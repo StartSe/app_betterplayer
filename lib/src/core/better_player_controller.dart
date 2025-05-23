@@ -264,9 +264,8 @@ class BetterPlayerController {
     }
 
     if (_isDataSourceAsms(betterPlayerDataSource)) {
-      _setupAsmsDataSource(betterPlayerDataSource).then((dynamic value) {
-        _setupSubtitles();
-      });
+      await _setupAsmsDataSource(betterPlayerDataSource);
+      _setupSubtitles();
     } else {
       _setupSubtitles();
     }
