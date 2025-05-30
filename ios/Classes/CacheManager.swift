@@ -110,7 +110,7 @@ import PINCache
         } else {
             // Trying to retrieve a track from cache syncronously
             let data = try? storage?.object(forKey: _key)
-            if data != nil {
+            if let cachedData = data {
                 // The file is cached.
                 self._existsInStorage = true
                 let mimeTypeResult = getMimeType(url:url, explicitVideoExtension: videoExtension)
@@ -118,7 +118,7 @@ import PINCache
                     NSLog("Cache error: couldn't find mime type for url: \(url.absoluteURL). For this URL cache didn't work and video will be played without cache.")
                     playerItem = CachingPlayerItem(url: url, cacheKey: _key, headers: headers)
                 } else {
-                    playerItem = CachingPlayerItem(data: data!, mimeType: mimeTypeResult.1, fileExtension: mimeTypeResult.0)
+                    playerItem = CachingPlayerItem(data: cachedData!, mimeType: mimeTypeResult.1, fileExtension: mimeTypeResult.0)
                 }
             } else {
                 // The file is not cached.
