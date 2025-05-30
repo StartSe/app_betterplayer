@@ -228,6 +228,11 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
     if (@available(iOS 10.0, *) && overriddenDuration > 0) {
         _overriddenDuration = overriddenDuration;
     }
+    
+    AVMediaSelectionGroup *subtitleSelectionGroup = [item.asset mediaSelectionGroupForMediaCharacteristic:AVMediaCharacteristicLegible];
+    
+    [item selectMediaOption:NULL inMediaSelectionGroup:subtitleSelectionGroup];
+
     return [self setDataSourcePlayerItem:item withKey:key];
 }
 
