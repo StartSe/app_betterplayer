@@ -482,8 +482,8 @@ class BetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
     companion object {
         private const val TAG = "BetterPlayerPlugin"
-        private const val CHANNEL = "better_player_channel"
-        private const val EVENTS_CHANNEL = "better_player_channel/videoEvents"
+        private const val CHANNEL = "app_better_player_channel"
+        private const val EVENTS_CHANNEL = "app_better_player_channel/videoEvents"
         private const val DATA_SOURCE_PARAMETER = "dataSource"
         private const val KEY_PARAMETER = "key"
         private const val HEADERS_PARAMETER = "headers"

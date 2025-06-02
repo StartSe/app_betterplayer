@@ -23,12 +23,12 @@ bool _remoteCommandsInitialized = false;
 #pragma mark - FlutterPlugin protocol
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* channel =
-    [FlutterMethodChannel methodChannelWithName:@"better_player_channel"
+    [FlutterMethodChannel methodChannelWithName:@"app_better_player_channel"
                                 binaryMessenger:[registrar messenger]];
     StartSeBetterPlayerPlugin* instance = [[StartSeBetterPlayerPlugin alloc] initWithRegistrar:registrar];
     [registrar addMethodCallDelegate:instance channel:channel];
     //[registrar publish:instance];
-    [registrar registerViewFactory:instance withId:@"com.jhomlala/better_player"];
+    [registrar registerViewFactory:instance withId:@"com.jhomlala/app_better_player"];
 }
 
 - (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -75,7 +75,7 @@ bool _remoteCommandsInitialized = false;
                result:(FlutterResult)result {
     int64_t textureId = [self newTextureId];
     FlutterEventChannel* eventChannel = [FlutterEventChannel
-                                         eventChannelWithName:[NSString stringWithFormat:@"better_player_channel/videoEvents%lld",
+                                         eventChannelWithName:[NSString stringWithFormat:@"app_better_player_channel/videoEvents%lld",
                                                                textureId]
                                          binaryMessenger:_messenger];
     [player setMixWithOthers:false];

@@ -2,7 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class MockMethodChannel {
-  final MethodChannel channel = const MethodChannel("better_player_channel");
+  final MethodChannel channel =
+      const MethodChannel("app_better_player_channel");
   final List<MethodChannel> eventsChannels = [];
 
   Future<Object?>? handle(MethodCall methodCall) async {
@@ -33,12 +34,12 @@ class MockMethodChannel {
 
   void _createEventChannel(int id) {
     final MethodChannel eventChannel =
-        MethodChannel("better_player_channel/videoEvents$id");
+        MethodChannel("app_better_player_channel/videoEvents$id");
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(eventChannel, (MethodCall methodCall) async {
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .handlePlatformMessage(
-              "better_player_channel/videoEvents$id",
+              "app_better_player_channel/videoEvents$id",
               const StandardMethodCodec()
                   .encodeSuccessEnvelope(_getInitResult()),
               (ByteData? data) {});
