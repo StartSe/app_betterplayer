@@ -30,7 +30,7 @@ import java.util.HashMap
 /**
  * Android platform implementation of the VideoPlayerPlugin.
  */
-class BetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
+class AppBetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     private val videoPlayers = LongSparseArray<BetterPlayer>()
     private val dataSources = LongSparseArray<Map<String, Any?>>()
     private var flutterState: FlutterState? = null
@@ -470,7 +470,7 @@ class BetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     ) {
         private val methodChannel: MethodChannel = MethodChannel(binaryMessenger, CHANNEL)
 
-        fun startListening(methodCallHandler: BetterPlayerPlugin?) {
+        fun startListening(methodCallHandler: AppBetterPlayerPlugin?) {
             methodChannel.setMethodCallHandler(methodCallHandler)
         }
 
@@ -481,7 +481,7 @@ class BetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     }
 
     companion object {
-        private const val TAG = "BetterPlayerPlugin"
+        private const val TAG = "AppBetterPlayerPlugin"
         private const val CHANNEL = "app_better_player_channel"
         private const val EVENTS_CHANNEL = "app_better_player_channel/videoEvents"
         private const val DATA_SOURCE_PARAMETER = "dataSource"

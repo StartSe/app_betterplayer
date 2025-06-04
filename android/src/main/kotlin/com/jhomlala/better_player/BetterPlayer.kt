@@ -247,7 +247,7 @@ internal class BetterPlayer(
                     .addTag(imageUrl)
                     .setInputData(
                         Data.Builder()
-                            .putString(BetterPlayerPlugin.URL_PARAMETER, imageUrl)
+                            .putString(AppBetterPlayerPlugin.URL_PARAMETER, imageUrl)
                             .build()
                     )
                     .build()
@@ -259,7 +259,7 @@ internal class BetterPlayer(
                             if (state == WorkInfo.State.SUCCEEDED) {
                                 val outputData = workInfo.outputData
                                 val filePath =
-                                    outputData.getString(BetterPlayerPlugin.FILE_PATH_PARAMETER)
+                                    outputData.getString(AppBetterPlayerPlugin.FILE_PATH_PARAMETER)
                                 //Bitmap here is already processed and it's very small, so it won't
                                 //break anything.
                                 bitmap = BitmapFactory.decodeFile(filePath)
@@ -810,16 +810,16 @@ internal class BetterPlayer(
             cacheKey: String?, result: MethodChannel.Result
         ) {
             val dataBuilder = Data.Builder()
-                .putString(BetterPlayerPlugin.URL_PARAMETER, dataSource)
-                .putLong(BetterPlayerPlugin.PRE_CACHE_SIZE_PARAMETER, preCacheSize)
-                .putLong(BetterPlayerPlugin.MAX_CACHE_SIZE_PARAMETER, maxCacheSize)
-                .putLong(BetterPlayerPlugin.MAX_CACHE_FILE_SIZE_PARAMETER, maxCacheFileSize)
+                .putString(AppBetterPlayerPlugin.URL_PARAMETER, dataSource)
+                .putLong(AppBetterPlayerPlugin.PRE_CACHE_SIZE_PARAMETER, preCacheSize)
+                .putLong(AppBetterPlayerPlugin.MAX_CACHE_SIZE_PARAMETER, maxCacheSize)
+                .putLong(AppBetterPlayerPlugin.MAX_CACHE_FILE_SIZE_PARAMETER, maxCacheFileSize)
             if (cacheKey != null) {
-                dataBuilder.putString(BetterPlayerPlugin.CACHE_KEY_PARAMETER, cacheKey)
+                dataBuilder.putString(AppBetterPlayerPlugin.CACHE_KEY_PARAMETER, cacheKey)
             }
             for (headerKey in headers.keys) {
                 dataBuilder.putString(
-                    BetterPlayerPlugin.HEADER_PARAMETER + headerKey,
+                    AppBetterPlayerPlugin.HEADER_PARAMETER + headerKey,
                     headers[headerKey]
                 )
             }

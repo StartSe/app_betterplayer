@@ -20,7 +20,7 @@ class ImageWorker(
 ) : Worker(context, params) {
     override fun doWork(): Result {
         return try {
-            val imageUrl = inputData.getString(BetterPlayerPlugin.URL_PARAMETER)
+            val imageUrl = inputData.getString(AppBetterPlayerPlugin.URL_PARAMETER)
                 ?: return Result.failure()
             val bitmap: Bitmap? = if (DataSourceUtils.isHTTP(Uri.parse(imageUrl))) {
                 getBitmapFromExternalURL(imageUrl)
@@ -35,7 +35,7 @@ class ImageWorker(
             val out = FileOutputStream(filePath)
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
             val data =
-                Data.Builder().putString(BetterPlayerPlugin.FILE_PATH_PARAMETER, filePath).build()
+                Data.Builder().putString(AppBetterPlayerPlugin.FILE_PATH_PARAMETER, filePath).build()
             Result.success(data)
         } catch (e: Exception) {
             e.printStackTrace()
